@@ -17,8 +17,8 @@ static uint64_t pow_mod(uint64_t base, uint64_t exp, uint64_t mod) {
 	base %= mod;
 	while(exp) {
 		// if controls if exp is odd
-		if (exp & 1) res = (res * base) % mod;
-		base = (base * base) % mod;
+		if (exp & 1) res = mul_mod(res, base, mod);
+		base = mul_mod(base,base,mod);
 		exp >>= 1;
 	}
 	return res;
