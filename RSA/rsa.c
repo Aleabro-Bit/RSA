@@ -4,12 +4,13 @@
 #include <time.h>
 #include <string.h>
 
-//TODO: fix decryption for bigger primes
-#define LOWER 1000
-#define UPPER 10000
+#define LOWER 100000
+#define UPPER 10000000
 
+//Verify that __uint128_t is supported by the compiler
 static uint64_t mul_mod(uint64_t a, uint64_t b, uint64_t mod){
-	return (a * b) % mod;
+	__uint128_t product = (__uint128_t)a * (__uint128_t)b;
+    return (uint64_t)(product % mod);
 }
 
 static uint64_t pow_mod(uint64_t base, uint64_t exp, uint64_t mod) {
